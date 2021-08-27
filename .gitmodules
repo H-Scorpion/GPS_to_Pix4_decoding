@@ -1,0 +1,3 @@
+[submodule "pyUBX"]
+	path = pyUBX
+	url = https://github.com/H-Scorpion/pyUBX.git
