@@ -2,7 +2,8 @@ import time
 import serial
 import joblib
 
-all_objs = joblib.load('ubxPacket_20210827-194754.pkl')
+filename ='demoGps.pkl'
+all_objs = joblib.load('./gpsData/' + filename)
 
 ser = serial.Serial('COM11', 115200, timeout=None)
 

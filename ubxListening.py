@@ -13,7 +13,7 @@ def obj_to_dict(obj):
         attrs = obj_id_to_attrs[obj._id]
     except KeyError:
         attrs = obj_id_to_attrs[obj._id] = [k for k in obj.Fields.__dict__.keys() if not k.startswith('__')]
-    return {attr: getattr(obj, attr) for attr in attrs}
+    return {attr: getattr(obj, attr, default='No Data') for attr in attrs}
 
 def my_onUBX(obj):
     timestamp = time.time() - timestamp_start
