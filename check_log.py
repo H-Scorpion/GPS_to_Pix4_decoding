@@ -1,12 +1,17 @@
+# This code check if serialization works
+# It will compare the binary log with obj that has been serialized
+# the two should be the same
+
 import time
 import joblib
 
-with open('UBX.log', 'rb') as f:
+with open('./gpsData/ubxPacket_20210829-223916.log', 'rb') as f:
     all_logs = f.read()
+    print(all_logs)
 
 print('all_logs len=', len(all_logs))
 
-all_objs = joblib.load('ubxPacket_20210827-194754.pkl')
+all_objs = joblib.load('./gpsData/ubxPacket_20210829-223916.pkl')
 timestamp_start = time.time()
 
 for timestamp, obj in all_objs:

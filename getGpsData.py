@@ -44,7 +44,7 @@ def my_onUBXError(msgClass, msgId, errMsg):
 
 
 if __name__ == '__main__':
-    ser = serial.Serial('COM11', 115200, timeout=None)
+    ser = serial.Serial('COM16', 115200, timeout=None)
     manager = UBXManager(ser, debug=True, eofTimeout=3.)
 
     manager.onUBX = my_onUBX
