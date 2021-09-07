@@ -6,7 +6,10 @@ import joblib
 filename ='ubxPacket_20210901-165743.pkl'
 all_objs = joblib.load('./gpsData/' + filename)
 
-ser = serial.Serial('COM12', 115200, timeout=None)
+with open('./serialComPort.txt','r') as f:
+    comPort = f.read()
+
+ser = serial.Serial(comPort, 115200, timeout=None)
 
 timestamp_start = time.time()
 
