@@ -10,13 +10,13 @@ import copy
 #  'sAcc', 'headAcc', 'pDOP', 'flags3', 'reserved1', 'reserved1x',
 #  'headVeh', 'magDec', 'magAcc', '__dict__', '__weakref__', '__doc__'])
 
-pvt_obj = joblib.load('NAV-PVT_template.pkl')
-sol_obj = joblib.load('NAV-SOL_template.pkl')
+pvt_obj = joblib.load('./NAV_template/NAV-PVT_template.pkl')
+sol_obj = joblib.load('./NAV_template/NAV-SOL_template.pkl')
 # print(pvt_obj)
 data_len = 5000
 height = [5 for _ in range(data_len)]
-lon = [round(121*10**7+5*i,3) for i in range(data_len)]
-lat = [round(25*10**7+5*i,3) for i in range(data_len)]
+lon = [round(121*10**7+10*i,3) for i in range(data_len)]
+lat = [round(25*10**7+10*i,3) for i in range(data_len)]
 timestamp = [0.2+i*0.2 for i in range(data_len)]
 genGpsData = []
 
@@ -38,7 +38,7 @@ for i in range(data_len):
     if i % 1000 == 0 :
         print(i)
 
-joblib.dump(genGpsData,'fakeGps.pkl')
+joblib.dump(genGpsData,'./fakeGps.pkl')
 
 # all_fake = joblib.load('fakeGps.pkl')
 # print(all_fake[0][1])

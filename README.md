@@ -4,7 +4,7 @@ transfering it to the format that FC can understand.
 Besides, before sending it to FC, we can do some computation
 to get better positioning data
 ## File Structure
-### serialComPort.txt
+### ComPort.txt
 Specify ttl COM Port inside
 ### getGpsData
 Gps Tx to ttl Rx
