@@ -1,12 +1,15 @@
 import time
 import serial
 import joblib
+from calGps import calGps
 
-# filename ='demoGps.pkl'
-filename ='ubxPacket_20210901-165743.pkl'
-all_objs = joblib.load('./gpsData/' + filename)
+# filename ='./gpsData/demoGps.pkl'
+# filename ='./gpsData/ubxPacket_20210901-165743.pkl'
+filename ='fakeGps.pkl'
 
-with open('./serialComPort.txt','r') as f:
+all_objs = joblib.load(filename)
+
+with open('./ComPort.txt','r') as f:
     comPort = f.read()
 
 ser = serial.Serial(comPort, 115200, timeout=None)
@@ -20,20 +23,24 @@ for timestamp, obj in all_objs:
         
         
 
-    try:
-        if obj._id == 7:
-            # for k,v in obj.items():
-            #     if k != 'lon' and k!='lat':
-            #         obj[k]=0
-            # print(obj.Fields.__dict__.keys())
-            obj.lon=obj.lon+5000000  # adding 1 for 10**-7degree
-            obj.lat=obj.lat-5*10**7
-            # print(obj)
-            
+    # try:
+    #     correctedObj = calGps(obj)
+    #     if correctedObj._id == 7:
+    #         serialized = correctedObj.serialize()
+    #     else:
+    #         serialized = b''
+    # except TypeError:
+    #     continue
+    # else:
+        
+    #     ser.write(serialized)
+    #     print(timestamp, 'sent:', len(serialized))
 
-        serialized = obj.serialize()
-    except TypeError:
+    try: 
+        if obj._id ==7:
+            serialized = obj.serialize()
+            ser.write(serialized)
+            print(timestamp, 'sent:', len(serialized))
+            print(obj)
+    except TabError:
         continue
-    else:
-        ser.write(serialized)
-        print(timestamp, 'sent:', len(serialized))
